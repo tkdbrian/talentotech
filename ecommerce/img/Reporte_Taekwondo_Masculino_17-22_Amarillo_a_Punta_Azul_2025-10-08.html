@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte de Categoría - Taekwon-Do</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f8f9fa; }
+        .header { text-align: center; margin-bottom: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; }
+        .category-info { background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .info-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .info-item { text-align: center; padding: 10px; background: #f8f9fa; border-radius: 8px; }
+        .info-label { font-weight: bold; color: #666; font-size: 0.9rem; }
+        .info-value { font-size: 1.1rem; color: #2c3e50; margin-top: 5px; }
+        .podium { display: flex; justify-content: center; margin: 30px 0; gap: 20px; }
+        .podium-place { text-align: center; padding: 20px; border-radius: 10px; min-width: 150px; }
+        .place-1 { background: linear-gradient(145deg, #f1c40f, #f39c12); color: white; transform: scale(1.1); }
+        .place-2 { background: linear-gradient(145deg, #95a5a6, #7f8c8d); color: white; }
+        .place-3 { background: linear-gradient(145deg, #cd7f32, #b8860b); color: white; }
+        .place-number { font-size: 2rem; font-weight: bold; }
+        .competitor-name { font-size: 1.2rem; margin: 10px 0; }
+        .table-container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: center; border-bottom: 1px solid #ddd; }
+        th { background: #3498db; color: white; font-weight: bold; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        tr:hover { background: #e3f2fd; }
+        .winner { background: #d4edda !important; font-weight: bold; }
+        .fights-section { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin: 20px 0; }
+        .fight-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; }
+        .fight-item.tiebreaker { background: #fff5f5; border-left: 4px solid #e74c3c; }
+        .tiebreaker-tag { background: #e74c3c; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8rem; }
+        .footer { text-align: center; margin-top: 30px; color: #666; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏆 REPORTE OFICIAL DE CATEGORÍA</h1>
+        <h2>TAEKWON-DO</h2>
+    </div>
+
+    <div class="category-info">
+        <h3>📋 Información de la Categoría</h3>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">Género</div>
+                <div class="info-value">Masculino</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Edad</div>
+                <div class="info-value">17 - 22 años</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Cinturones</div>
+                <div class="info-value">Amarillo a Punta Azul</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Fecha</div>
+                <div class="info-value">8/10/2025</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="podium">
+        
+            <div class="podium-place place-1">
+                <div class="place-number">1°</div>
+                <div class="competitor-name">torres</div>
+                <div>6 victorias</div>
+                <div>8 pts jueces</div>
+            </div>
+        
+            <div class="podium-place place-2">
+                <div class="place-number">2°</div>
+                <div class="competitor-name">chevi</div>
+                <div>4 victorias</div>
+                <div>4 pts jueces</div>
+            </div>
+        
+            <div class="podium-place place-3">
+                <div class="place-number">3°</div>
+                <div class="competitor-name">kuki</div>
+                <div>3 victorias</div>
+                <div>4 pts jueces</div>
+            </div>
+        
+    </div>
+
+    <div class="table-container">
+        <h3>📊 Clasificación Final</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Pos</th>
+                    <th>Competidor</th>
+                    <th>Peleas</th>
+                    <th>Ganadas</th>
+                    <th>Empates</th>
+                    <th>Perdidas</th>
+                    <th>Pts Victoria</th>
+                    <th>Pts Jueces</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                
+                    <tr class="winner">
+                        <td>1°</td>
+                        <td><strong>torres</strong></td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><strong>6</strong></td>
+                        <td><strong>8</strong></td>
+                        
+                    </tr>
+                
+                    <tr class="">
+                        <td>2°</td>
+                        <td><strong>chevi</strong></td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td><strong>4</strong></td>
+                        <td><strong>4</strong></td>
+                        
+                    </tr>
+                
+                    <tr class="">
+                        <td>3°</td>
+                        <td><strong>kuki</strong></td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td><strong>3</strong></td>
+                        <td><strong>4</strong></td>
+                        
+                    </tr>
+                
+                    <tr class="">
+                        <td>4°</td>
+                        <td><strong>maxi</strong></td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td><strong>3</strong></td>
+                        <td><strong>3</strong></td>
+                        
+                    </tr>
+                
+                    <tr class="">
+                        <td>5°</td>
+                        <td><strong>bols</strong></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td><strong>1</strong></td>
+                        <td><strong>0</strong></td>
+                        
+                    </tr>
+                
+                    <tr class="">
+                        <td>6°</td>
+                        <td><strong>mostro</strong></td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td><strong>0</strong></td>
+                        <td><strong>1</strong></td>
+                        
+                    </tr>
+                
+            </tbody>
+        </table>
+    </div>
+
+    <div class="fights-section">
+        <h3>🥊 Historial de Combates</h3>
+        
+                <div class="fight-item ">
+                    <div>
+                        <strong>kuki vs bols</strong>
+                        
+                        <br>
+                        <small>8/10/2025 - 15:33</small>
+                    </div>
+                    <div>
+                        <strong>kuki ganó</strong>
+                    </div>
+                </div>
+            
+                <div class="fight-item ">
+                    <div>
+                        <strong>kuki vs chevi</strong>
+                        
+                        <br>
+                        <small>8/10/2025 - 15:33</small>
+                    </div>
+                    <div>
+                        <strong>chevi ganó</strong>
+                    </div>
+                </div>
+            
+                <div class="fight-item ">
+                    <div>
+                        <strong>bols vs chevi</strong>
+                        
+                        <br>
+                        <small>8/10/2025 - 15:33</small>
+                    </div>
+                    <div>
+                        <strong>Empate</strong>
+                    </div>
+                </div>
+            
+                <div class="fight-item ">
+                    <div>
+                        <strong>maxi vs mostro</strong>
+                        
+                        <br>
+                        <small>8/10/2025 - 15:33</small>
+                    </div>
+                    <div>
+                        <strong>maxi ganó</strong>
+                    </div>
+                </div>
+            
+                <div class="fight-item ">
+                    <div>
+                        <strong>maxi vs torres</strong>
+                        
+                        <br>
+                        <small>8/10/2025 - 15:34</small>
+                    </div>
+                    <div>
+                        <strong>torres ganó</strong>
+                    </div>
+                </div>
+            
+                <div class="fight-item ">
+                    <div>
+                        <strong>mostro vs torres</strong>
+                        
+                        <br>
+                        <small>8/10/2025 - 15:34</small>
+                    </div>
+                    <div>
+                        <strong>torres ganó</strong>
+                    </div>
+                </div>
+            
+                <div class="fight-item ">
+                    <div>
+                        <strong>chevi vs torres</strong>
+                        
+                        <br>
+                        <small>8/10/2025 - 15:35</small>
+                    </div>
+                    <div>
+                        <strong>chevi ganó</strong>
+                    </div>
+                </div>
+            
+    </div>
+
+    <div class="footer">
+        <p>📅 Reporte generado el 8/10/2025 a las 15:36:57</p>
+        <p>🥋 Sistema de Puntuación Taekwon-Do - Brian E. Lipnjak</p>
+    </div>
+</body>
+</html>
