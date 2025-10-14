@@ -11,15 +11,21 @@ interface StudentCardProps {
 export default function StudentCard({ student, onEdit, onDelete }: StudentCardProps) {
   const getBeltColor = (belt: string) => {
     const colors: Record<string, string> = {
+      'Blanco (10)': 'bg-gray-100 text-gray-800',
+      'Punta Amarilla (9)': 'bg-yellow-100 text-yellow-800',
+      'Amarillo (8)': 'bg-yellow-200 text-yellow-800',
+      'Amarillo Punta Verde (7)': 'bg-green-100 text-green-800',
+      'Verde (6)': 'bg-green-200 text-green-800',
+      'Verde Punta Azul (5)': 'bg-blue-100 text-blue-800',
+      'Azul (4)': 'bg-blue-200 text-blue-800',
+      'Azul Punta Roja (3)': 'bg-red-100 text-red-800',
+      'Rojo (2)': 'bg-red-200 text-red-800',
+      'Rojo Punta Negra (1)': 'bg-gray-800 text-white',
+      // Mantener compatibilidad con cintas anteriores
       'Blanco': 'bg-gray-100 text-gray-800',
       'Amarillo': 'bg-yellow-100 text-yellow-800',
-      'Naranja': 'bg-orange-100 text-orange-800',
       'Verde': 'bg-green-100 text-green-800',
       'Azul': 'bg-blue-100 text-blue-800',
-      'Marrón': 'bg-amber-100 text-amber-800',
-      'Negro 1º Dan': 'bg-gray-800 text-white',
-      'Negro 2º Dan': 'bg-gray-800 text-white',
-      'Negro 3º Dan': 'bg-gray-800 text-white',
     }
     return colors[belt] || 'bg-gray-100 text-gray-800'
   }
@@ -80,6 +86,12 @@ export default function StudentCard({ student, onEdit, onDelete }: StudentCardPr
       </div>
 
       <div className="space-y-2">
+        {student.dni && (
+          <div className="flex items-center text-sm text-gray-600">
+            <span className="w-4 h-4 mr-2 text-center font-bold">ID</span>
+            DNI: {student.dni}
+          </div>
+        )}
         <div className="flex items-center text-sm text-gray-600">
           <FontAwesomeIcon icon={faEnvelope} className="w-4 h-4 mr-2" />
           {student.email}
@@ -88,10 +100,18 @@ export default function StudentCard({ student, onEdit, onDelete }: StudentCardPr
           <FontAwesomeIcon icon={faPhone} className="w-4 h-4 mr-2" />
           {student.phone}
         </div>
-        <div className="flex items-center text-sm text-gray-600">
-          <FontAwesomeIcon icon={faBirthdayCake} className="w-4 h-4 mr-2" />
-          {new Date(student.birthDate).toLocaleDateString()}
-        </div>
+        {student.practiceLocation && (
+          <div className="flex items-center text-sm text-gray-600">
+            <span className="w-4 h-4 mr-2 text-center">🏢</span>
+            {student.practiceLocation} - {student.shift}
+          </div>
+        )}
+        {student.instructor && (
+          <div className="flex items-center text-sm text-gray-600">
+            <span className="w-4 h-4 mr-2 text-center">👨‍🏫</span>
+            {student.instructor}
+          </div>
+        )}
       </div>
 
       <div className="mt-4 pt-4 border-t border-gray-200">
@@ -103,6 +123,13 @@ export default function StudentCard({ student, onEdit, onDelete }: StudentCardPr
           <span className="text-gray-500">Ingreso:</span>
           <span className="text-gray-700">{new Date(student.joinDate).toLocaleDateString()}</span>
         </div>
+        {student.isCompleteForDiploma && (
+          <div className="mt-2">
+            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">
+              ✓ Completo para diploma
+            </span>
+          </div>
+        )}
       </div>
     </div>
   )

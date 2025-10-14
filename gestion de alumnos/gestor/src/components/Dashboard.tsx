@@ -16,6 +16,20 @@ export default function Dashboard() {
     return acc
   }, {} as Record<string, number>)
 
+  // Estadísticas por sede
+  const locationStats = students.reduce((acc, student) => {
+    const location = student.practiceLocation || 'Sin asignar'
+    acc[location] = (acc[location] || 0) + 1
+    return acc
+  }, {} as Record<string, number>)
+
+  // Estadísticas por turno
+  const shiftStats = students.reduce((acc, student) => {
+    const shift = student.shift || 'Sin asignar'
+    acc[shift] = (acc[shift] || 0) + 1
+    return acc
+  }, {} as Record<string, number>)
+
   const statCards = [
     {
       title: 'Total Estudiantes',

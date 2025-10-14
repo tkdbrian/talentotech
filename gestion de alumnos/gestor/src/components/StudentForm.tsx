@@ -14,45 +14,47 @@ export default function StudentForm({ student, onSave, onCancel }: StudentFormPr
     dni: string
     name: string
     email: string
+    belt: string
+    birthDate: string
     phone: string
     emergencyContact: string
-    birthDate: string
     joinDate: string
-    currentGUP: string
+    monthlyFee: number
+    status: 'active' | 'inactive' | 'suspended'
     practiceLocation: string
     shift: string
     instructor: string
     isCompleteForDiploma: boolean
     observations: string
-    status: 'active' | 'inactive' | 'suspended'
   }>({
     dni: '',
     name: '',
     email: '',
+    belt: '',
+    birthDate: '',
     phone: '',
     emergencyContact: '',
-    birthDate: '',
     joinDate: new Date().toISOString().split('T')[0],
-    currentGUP: '',
+    monthlyFee: 0,
+    status: 'active',
     practiceLocation: '',
     shift: '',
     instructor: '',
     isCompleteForDiploma: false,
     observations: '',
-    status: 'active',
   })
 
-  const gups = [
-    { value: 'BLANCO_10', label: 'Blanco (10)' },
-    { value: 'PUNTA_AMARILLA_9', label: 'Punta Amarilla (9)' },
-    { value: 'AMARILLO_8', label: 'Amarillo (8)' },
-    { value: 'AMARILLO_PUNTA_VERDE_7', label: 'Amarillo Punta Verde (7)' },
-    { value: 'VERDE_6', label: 'Verde (6)' },
-    { value: 'VERDE_PUNTA_AZUL_5', label: 'Verde Punta Azul (5)' },
-    { value: 'AZUL_4', label: 'Azul (4)' },
-    { value: 'AZUL_PUNTA_ROJA_3', label: 'Azul Punta Roja (3)' },
-    { value: 'ROJO_2', label: 'Rojo (2)' },
-    { value: 'ROJO_PUNTA_NEGRA_1', label: 'Rojo Punta Negra (1)' }
+  const belts = [
+    'Blanco (10)',
+    'Punta Amarilla (9)',
+    'Amarillo (8)',
+    'Amarillo Punta Verde (7)',
+    'Verde (6)',
+    'Verde Punta Azul (5)',
+    'Azul (4)',
+    'Azul Punta Roja (3)',
+    'Rojo (2)',
+    'Rojo Punta Negra (1)'
   ]
 
   const shifts = ['Mañana', 'Tarde', 'Noche']
@@ -62,20 +64,21 @@ export default function StudentForm({ student, onSave, onCancel }: StudentFormPr
   useEffect(() => {
     if (student) {
       setFormData({
-        dni: student.dni,
+        dni: student.dni || '',
         name: student.name,
         email: student.email,
+        belt: student.belt,
+        birthDate: student.birthDate,
         phone: student.phone,
         emergencyContact: student.emergencyContact,
-        birthDate: student.birthDate,
         joinDate: student.joinDate,
-        currentGUP: student.currentGUP,
-        practiceLocation: student.practiceLocation,
-        shift: student.shift,
-        instructor: student.instructor,
-        isCompleteForDiploma: student.isCompleteForDiploma,
-        observations: student.observations || '',
+        monthlyFee: student.monthlyFee,
         status: student.status,
+        practiceLocation: student.practiceLocation || '',
+        shift: student.shift || '',
+        instructor: student.instructor || '',
+        isCompleteForDiploma: student.isCompleteForDiploma || false,
+        observations: student.observations || '',
       })
     }
   }, [student])
@@ -83,19 +86,10 @@ export default function StudentForm({ student, onSave, onCancel }: StudentFormPr
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     
-    const studentData = {
-      ...formData,
-      currentGUP: formData.currentGUP as any, // Convertir a GUP type
-      attendances: student?.attendances || [],
-      exams: student?.exams || [],
-      payments: student?.payments || [],
-      nextExamSuggestedDate: student?.nextExamSuggestedDate
-    }
-    
     if (student) {
-      onSave({ ...studentData, id: student.id })
+      onSave({ ...formData, id: student.id })
     } else {
-      onSave({ ...studentData, id: Date.now().toString() })
+      onSave({ ...formData, id: Date.now().toString() })
     }
   }
 
