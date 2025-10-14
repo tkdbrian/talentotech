@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faSearch, faUsers, faGraduationCap, faCalendarAlt, faDollarSign } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faSearch, faUsers, faGraduationCap, faCalendarAlt, faDollarSign, faDatabase } from '@fortawesome/free-solid-svg-icons'
 import { useAppDispatch, useAppSelector } from './store/hooks'
 import { addStudent, updateStudent, deleteStudent, setSearchTerm, setBeltFilter, setStatusFilter, type Student } from './store/slices/studentsSlice'
 import StudentForm from './components/StudentForm'
@@ -8,13 +8,15 @@ import StudentCard from './components/StudentCard'
 import Dashboard from './components/Dashboard'
 import ClassManagement from './components/ClassManagement'
 import PaymentManagement from './components/PaymentManagement'
+import DataManagement from './components/DataManagement'
+import { DataInitializer } from './components/DataInitializer'
 
 function App() {
   const dispatch = useAppDispatch()
   const { filteredStudents, searchTerm, selectedBelt, selectedStatus } = useAppSelector(state => state.students)
   const [showForm, setShowForm] = useState(false)
   const [editingStudent, setEditingStudent] = useState<Student | null>(null)
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'students' | 'classes' | 'payments'>('dashboard')
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'students' | 'classes' | 'payments' | 'data'>('dashboard')
 
   const belts = ['Blanco', 'Amarillo', 'Naranja', 'Verde', 'Azul', 'Marrón', 'Negro 1º Dan', 'Negro 2º Dan', 'Negro 3º Dan']
   const statuses = ['active', 'inactive', 'suspended']
@@ -47,6 +49,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-100">
+      {/* Inicializar datos del localStorage */}
+      <DataInitializer />
+      
       {/* Header */}
       <header className="bg-blue-600 text-white shadow-lg">
         <div className="container mx-auto px-4 py-4">
@@ -91,6 +96,15 @@ function App() {
                 <FontAwesomeIcon icon={faDollarSign} className="mr-2" />
                 Pagos
               </button>
+              <button
+                onClick={() => setActiveTab('data')}
+                className={`px-4 py-2 rounded transition-colors ${
+                  activeTab === 'data' ? 'bg-blue-700' : 'hover:bg-blue-700'
+                }`}
+              >
+                <FontAwesomeIcon icon={faDatabase} className="mr-2" />
+                Datos
+              </button>
             </nav>
           </div>
         </div>
@@ -102,6 +116,8 @@ function App() {
         {activeTab === 'classes' && <ClassManagement />}
         
         {activeTab === 'payments' && <PaymentManagement />}
+        
+        {activeTab === 'data' && <DataManagement />}
         
         {activeTab === 'students' && (
           <>

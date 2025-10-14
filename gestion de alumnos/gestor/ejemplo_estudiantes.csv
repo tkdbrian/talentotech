@@ -1,0 +1,9 @@
+ID,DNI,Nombre,Email,Cinta,Fecha_Nacimiento,Telefono,Contacto_Emergencia,Fecha_Ingreso,Cuota_Mensual,Estado,Sede,Turno,Instructor
+1,12345678,"Juan Pérez",juan@email.com,"Amarillo (9)",1990-05-15,1123456789,"María Pérez - 1187654321",2024-01-15,50000,active,Scholem,"18:00","Instructor A"
+2,87654321,"Ana García",ana@email.com,"Verde (7)",1985-03-20,1134567890,"Carlos García - 1198765432",2024-02-01,50000,active,"Concept Club","19:00","Instructor B"
+3,11223344,"Luis Rodríguez",luis@email.com,"Azul (5)",1992-08-10,1145678901,"Carmen Rodríguez - 1109876543",2024-02-15,50000,active,"Siglo XX","18:30","Instructor C"
+4,44332211,"Sofia Martínez",sofia@email.com,"Naranja (8)",1995-12-03,1156789012,"Pedro Martínez - 1120987654",2024-03-01,50000,active,Scholem,"18:00","Instructor A"
+5,55667788,"Diego López",diego@email.com,"Marrón (3)",1988-07-25,1167890123,"Elena López - 1131098765",2024-03-10,50000,active,"Concept Club","20:15","Instructor B"
+6,99887766,"Valentina Ruiz",vale@email.com,"Blanco (10)",2005-11-18,1178901234,"Roberto Ruiz - 1142109876",2024-03-20,45000,active,"Siglo XX","19:30","Instructor C"
+7,33445566,"Mateo Silva",mateo@email.com,"Negro 1º Dan",1980-04-12,1189012345,"Laura Silva - 1153210987",2024-01-05,60000,active,Scholem,"19:00","Instructor A"
+8,66778899,"Emma Torres",emma@email.com,"Verde (6)",1993-09-28,1190123456,"Andrés Torres - 1164321098",2024-02-20,50000,active,"Concept Club","18:00","Instructor B"
