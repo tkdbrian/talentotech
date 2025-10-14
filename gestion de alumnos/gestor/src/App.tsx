@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faSearch, faUsers, faGraduationCap, faCalendarAlt, faDollarSign, faDatabase } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faSearch, faUsers, faGraduationCap, faCalendarAlt, faDollarSign, faDatabase, faChartLine } from '@fortawesome/free-solid-svg-icons'
 import { useAppDispatch, useAppSelector } from './store/hooks'
 import { addStudent, updateStudent, deleteStudent, setSearchTerm, setBeltFilter, setStatusFilter, type Student } from './store/slices/studentsSlice'
 import StudentForm from './components/StudentForm'
@@ -10,13 +10,14 @@ import ClassManagement from './components/ClassManagement'
 import PaymentManagement from './components/PaymentManagement'
 import DataManagement from './components/DataManagement'
 import { DataInitializer } from './components/DataInitializer'
+import FinancialDashboard from './components/FinancialDashboard'
 
 function App() {
   const dispatch = useAppDispatch()
   const { filteredStudents, searchTerm, selectedBelt, selectedStatus } = useAppSelector(state => state.students)
   const [showForm, setShowForm] = useState(false)
   const [editingStudent, setEditingStudent] = useState<Student | null>(null)
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'students' | 'classes' | 'payments' | 'data'>('dashboard')
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'students' | 'classes' | 'payments' | 'data' | 'finances'>('dashboard')
 
   const belts = ['Blanco', 'Amarillo', 'Naranja', 'Verde', 'Azul', 'Marrón', 'Negro 1º Dan', 'Negro 2º Dan', 'Negro 3º Dan']
   const statuses = ['active', 'inactive', 'suspended']
@@ -105,6 +106,15 @@ function App() {
                 <FontAwesomeIcon icon={faDatabase} className="mr-2" />
                 Datos
               </button>
+              <button
+                onClick={() => setActiveTab('finances')}
+                className={`px-4 py-2 rounded transition-colors ${
+                  activeTab === 'finances' ? 'bg-blue-700' : 'hover:bg-blue-700'
+                }`}
+              >
+                <FontAwesomeIcon icon={faChartLine} className="mr-2" />
+                Finanzas
+              </button>
             </nav>
           </div>
         </div>
@@ -118,6 +128,8 @@ function App() {
         {activeTab === 'payments' && <PaymentManagement />}
         
         {activeTab === 'data' && <DataManagement />}
+        
+        {activeTab === 'finances' && <FinancialDashboard />}
         
         {activeTab === 'students' && (
           <>
