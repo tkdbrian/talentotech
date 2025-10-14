@@ -1,19 +1,20 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faSearch, faUsers, faGraduationCap, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faSearch, faUsers, faGraduationCap, faCalendarAlt, faDollarSign } from '@fortawesome/free-solid-svg-icons'
 import { useAppDispatch, useAppSelector } from './store/hooks'
 import { addStudent, updateStudent, deleteStudent, setSearchTerm, setBeltFilter, setStatusFilter, type Student } from './store/slices/studentsSlice'
 import StudentForm from './components/StudentForm'
 import StudentCard from './components/StudentCard'
 import Dashboard from './components/Dashboard'
 import ClassManagement from './components/ClassManagement'
+import PaymentManagement from './components/PaymentManagement'
 
 function App() {
   const dispatch = useAppDispatch()
   const { filteredStudents, searchTerm, selectedBelt, selectedStatus } = useAppSelector(state => state.students)
   const [showForm, setShowForm] = useState(false)
   const [editingStudent, setEditingStudent] = useState<Student | null>(null)
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'students' | 'classes'>('dashboard')
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'students' | 'classes' | 'payments'>('dashboard')
 
   const belts = ['Blanco', 'Amarillo', 'Naranja', 'Verde', 'Azul', 'Marrón', 'Negro 1º Dan', 'Negro 2º Dan', 'Negro 3º Dan']
   const statuses = ['active', 'inactive', 'suspended']
@@ -81,6 +82,15 @@ function App() {
                 <FontAwesomeIcon icon={faCalendarAlt} className="mr-2" />
                 Clases
               </button>
+              <button
+                onClick={() => setActiveTab('payments')}
+                className={`px-4 py-2 rounded transition-colors ${
+                  activeTab === 'payments' ? 'bg-blue-700' : 'hover:bg-blue-700'
+                }`}
+              >
+                <FontAwesomeIcon icon={faDollarSign} className="mr-2" />
+                Pagos
+              </button>
             </nav>
           </div>
         </div>
@@ -90,6 +100,8 @@ function App() {
         {activeTab === 'dashboard' && <Dashboard />}
         
         {activeTab === 'classes' && <ClassManagement />}
+        
+        {activeTab === 'payments' && <PaymentManagement />}
         
         {activeTab === 'students' && (
           <>
