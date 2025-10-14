@@ -1,18 +1,19 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faSearch, faUsers, faGraduationCap } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faSearch, faUsers, faGraduationCap, faCalendarAlt } from '@fortawesome/free-solid-svg-icons'
 import { useAppDispatch, useAppSelector } from './store/hooks'
 import { addStudent, updateStudent, deleteStudent, setSearchTerm, setBeltFilter, setStatusFilter, type Student } from './store/slices/studentsSlice'
 import StudentForm from './components/StudentForm'
 import StudentCard from './components/StudentCard'
 import Dashboard from './components/Dashboard'
+import ClassManagement from './components/ClassManagement'
 
 function App() {
   const dispatch = useAppDispatch()
   const { filteredStudents, searchTerm, selectedBelt, selectedStatus } = useAppSelector(state => state.students)
   const [showForm, setShowForm] = useState(false)
   const [editingStudent, setEditingStudent] = useState<Student | null>(null)
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'students'>('dashboard')
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'students' | 'classes'>('dashboard')
 
   const belts = ['Blanco', 'Amarillo', 'Naranja', 'Verde', 'Azul', 'Marrón', 'Negro 1º Dan', 'Negro 2º Dan', 'Negro 3º Dan']
   const statuses = ['active', 'inactive', 'suspended']
@@ -71,6 +72,15 @@ function App() {
                 <FontAwesomeIcon icon={faUsers} className="mr-2" />
                 Estudiantes
               </button>
+              <button
+                onClick={() => setActiveTab('classes')}
+                className={`px-4 py-2 rounded transition-colors ${
+                  activeTab === 'classes' ? 'bg-blue-700' : 'hover:bg-blue-700'
+                }`}
+              >
+                <FontAwesomeIcon icon={faCalendarAlt} className="mr-2" />
+                Clases
+              </button>
             </nav>
           </div>
         </div>
@@ -78,6 +88,8 @@ function App() {
 
       <main className="container mx-auto px-4 py-8">
         {activeTab === 'dashboard' && <Dashboard />}
+        
+        {activeTab === 'classes' && <ClassManagement />}
         
         {activeTab === 'students' && (
           <>

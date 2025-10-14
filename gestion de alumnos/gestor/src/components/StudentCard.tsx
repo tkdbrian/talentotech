@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit, faTrash, faUser, faEnvelope, faPhone, faBirthdayCake } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faTrash, faUser, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons'
 import type { Student } from '../store/slices/studentsSlice'
 
 interface StudentCardProps {

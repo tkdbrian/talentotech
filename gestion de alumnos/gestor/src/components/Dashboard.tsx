@@ -1,9 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUsers, faUserCheck, faUserTimes, faUserClock, faDollarSign, faChartLine } from '@fortawesome/free-solid-svg-icons'
-import { useAppSelector } from '../store/hooks'
+import { faUsers, faUserCheck, faUserTimes, faUserClock, faDollarSign, faChartLine, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { useAppSelector, useAppDispatch } from '../store/hooks'
+import { loadSampleData } from '../store/slices/studentsSlice'
 
 export default function Dashboard() {
   const { students } = useAppSelector(state => state.students)
+  const dispatch = useAppDispatch()
+
+  const handleLoadSampleData = () => {
+    dispatch(loadSampleData())
+  }
 
   const activeStudents = students.filter(s => s.status === 'active').length
   const inactiveStudents = students.filter(s => s.status === 'inactive').length
@@ -16,19 +22,7 @@ export default function Dashboard() {
     return acc
   }, {} as Record<string, number>)
 
-  // Estadísticas por sede
-  const locationStats = students.reduce((acc, student) => {
-    const location = student.practiceLocation || 'Sin asignar'
-    acc[location] = (acc[location] || 0) + 1
-    return acc
-  }, {} as Record<string, number>)
-
-  // Estadísticas por turno
-  const shiftStats = students.reduce((acc, student) => {
-    const shift = student.shift || 'Sin asignar'
-    acc[shift] = (acc[shift] || 0) + 1
-    return acc
-  }, {} as Record<string, number>)
+  // Nota: Las estadísticas por sede y turno se mostrarán en el módulo de clases
 
   const statCards = [
     {
@@ -86,6 +80,31 @@ export default function Dashboard() {
           </div>
         ))}
       </div>
+
+      {/* Botón para cargar datos de ejemplo - Solo mostrar si no hay estudiantes */}
+      {students.length === 0 && (
+        <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg">
+          <div className="flex items-center">
+            <div className="ml-3 flex-1">
+              <p className="text-sm text-blue-700">
+                ¡Bienvenido! No hay estudiantes en el sistema aún.
+              </p>
+              <p className="text-sm text-blue-600 mt-1">
+                Puedes comenzar agregando estudiantes manualmente o cargando datos de ejemplo para probar el sistema.
+              </p>
+            </div>
+            <div className="ml-4">
+              <button
+                onClick={handleLoadSampleData}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-colors"
+              >
+                <FontAwesomeIcon icon={faPlus} className="text-sm" />
+                Cargar Datos de Ejemplo
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Distribución por cintas */}
       <div className="bg-white rounded-lg shadow-md p-6">

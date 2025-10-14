@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes, faSave } from '@fortawesome/free-solid-svg-icons'
-import type { Student, GUP } from '../store/slices/studentsSlice'
+import type { Student } from '../store/slices/studentsSlice'
 
 interface StudentFormProps {
   student?: Student | null
@@ -58,7 +58,7 @@ export default function StudentForm({ student, onSave, onCancel }: StudentFormPr
   ]
 
   const shifts = ['Mañana', 'Tarde', 'Noche']
-  const locations = ['Sede Central', 'Sede Norte', 'Sede Sur', 'Sede Este']
+  const locations = ['Scholem', 'Concept Club', 'Siglo XX']
   const instructors = ['Instructor Principal', 'Instructor Asistente 1', 'Instructor Asistente 2']
 
   useEffect(() => {
@@ -93,7 +93,7 @@ export default function StudentForm({ student, onSave, onCancel }: StudentFormPr
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
     setFormData(prev => ({
       ...prev,
@@ -274,6 +274,89 @@ export default function StudentForm({ student, onSave, onCancel }: StudentFormPr
                   <option value="inactive">Inactivo</option>
                   <option value="suspended">Suspendido</option>
                 </select>
+              </div>
+
+              <div>
+                <label htmlFor="practiceLocation" className="block text-sm font-medium text-gray-700 mb-1">
+                  Sede de práctica
+                </label>
+                <select
+                  id="practiceLocation"
+                  name="practiceLocation"
+                  value={formData.practiceLocation}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="">Seleccionar sede</option>
+                  {locations.map(location => (
+                    <option key={location} value={location}>{location}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="shift" className="block text-sm font-medium text-gray-700 mb-1">
+                  Turno preferido
+                </label>
+                <select
+                  id="shift"
+                  name="shift"
+                  value={formData.shift}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="">Seleccionar turno</option>
+                  {shifts.map(shift => (
+                    <option key={shift} value={shift}>{shift}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="instructor" className="block text-sm font-medium text-gray-700 mb-1">
+                  Instructor asignado
+                </label>
+                <select
+                  id="instructor"
+                  name="instructor"
+                  value={formData.instructor}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="">Seleccionar instructor</option>
+                  {instructors.map(instructor => (
+                    <option key={instructor} value={instructor}>{instructor}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="observations" className="block text-sm font-medium text-gray-700 mb-1">
+                  Observaciones
+                </label>
+                <textarea
+                  id="observations"
+                  name="observations"
+                  value={formData.observations}
+                  onChange={handleChange}
+                  rows={3}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Notas adicionales sobre el estudiante..."
+                />
+              </div>
+
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="isCompleteForDiploma"
+                  name="isCompleteForDiploma"
+                  checked={formData.isCompleteForDiploma}
+                  onChange={(e) => setFormData(prev => ({ ...prev, isCompleteForDiploma: e.target.checked }))}
+                  className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                />
+                <label htmlFor="isCompleteForDiploma" className="ml-2 text-sm text-gray-700">
+                  Completo para diploma
+                </label>
               </div>
             </div>
           </div>

@@ -1,4 +1,15 @@
-import type { GUP } from '../store/slices/studentsSlice'
+// Tipo para los niveles GUP del taekwondo
+export type GUP = 
+  | 'BLANCO_10'
+  | 'PUNTA_AMARILLA_9' 
+  | 'AMARILLO_8'
+  | 'AMARILLO_PUNTA_VERDE_7'
+  | 'VERDE_6'
+  | 'VERDE_PUNTA_AZUL_5'
+  | 'AZUL_4'
+  | 'AZUL_PUNTA_ROJA_3'
+  | 'ROJO_2'
+  | 'ROJO_PUNTA_NEGRA_1'
 
 // Definición de la progresión de cinturones según reglas de negocio
 export const GUP_PROGRESSION: Record<GUP, { 
