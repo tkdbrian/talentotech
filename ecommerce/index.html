@@ -16,68 +16,17 @@
     <nav>
       <a href="index.html">Inicio</a>
       <a href="pages/contacto.html">Contacto</a>
+      <a href="pages/carrito.html" class="btn-carrito">
+        🛒 <span id="contador-carrito">0</span>
+      </a>
     </nav>
   </header>
 
   <main>
     <section>
       <h2>Indumentaria Destacada</h2>
-      <div class="productos">
-        <article>
-          <img src="img/cabezal invictus.WEBP" alt="Cabezal Invictus">
-          <h3>Cabezal Invictus</h3>
-          <p>$50.000</p>
-          <button>Agregar al carrito</button>
-        </article>
-
-        <article>
-          <img src="img/cabezal manus.jpg" alt="Cabezal Manus">
-          <h3>Cabezal Manus</h3>
-          <p>$45.000</p>
-          <button>Agregar al carrito</button>
-        </article>
-
-        <article>
-          <img src="img/cabezal primus.jpg" alt="Cabezal Primus">
-          <h3>Cabezal Primus</h3>
-          <p>$55.000</p>
-          <button>Agregar al carrito</button>
-        </article>
-
-        <article>
-          <img src="img/cabezal Sparring.JPG" alt="Cabezal Sparring">
-          <h3>Cabezal Sparring</h3>
-          <p>$48.000</p>
-          <button>Agregar al carrito</button>
-        </article>
-
-        <article>
-          <img src="img/guantes manus.JPG" alt="Guantes Manus">
-          <h3>Guantes Manus</h3>
-          <p>$38.000</p>
-          <button>Agregar al carrito</button>
-        </article>
-
-        <article>
-          <img src="img/pie invictus.JPG" alt="Pie Invictus">
-          <h3>Pie Invictus</h3>
-          <p>$35.000</p>
-          <button>Agregar al carrito</button>
-        </article>
-
-        <article>
-          <img src="img/pie sparring.JPG" alt="Pie Sparring">
-          <h3>Pie Sparring</h3>
-          <p>$30.000</p>
-          <button>Agregar al carrito</button>
-        </article>
-
-        <article>
-          <img src="img/tibial sparring.JPG" alt="Tibial Sparring">
-          <h3>Tibial Sparring</h3>
-          <p>$35.000</p>
-          <button>Agregar al carrito</button>
-        </article>
+      <div id="contenedor-productos" class="productos">
+        <!-- Los productos se cargarán dinámicamente con JavaScript -->
       </div>
     </section>
   </main>
@@ -88,5 +37,7 @@
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 50px; height: 50px;">
     </a>
   </footer>
+
+  <script type="module" src="./js/index.js"></script>
 </body>
 </html>
